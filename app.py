@@ -1,14 +1,8 @@
-# save this as app.py
 from flask import Flask, request, render_template
 from sentence_transformers import SentenceTransformer, util
 import scipy
 import os
 import pandas as pd
-#import keras.backend.tensorflow_backend as tb
-#from tensorflow.keras.models import model_from_json
-from keras.models import model_from_json
-
-#tb._SYMBOLIC_SCOPE.value = True
 
 model = SentenceTransformer('bert-base-nli-mean-tokens')
 
@@ -22,7 +16,7 @@ def hello():
 	return TEMPLATE_DIR
 
 # A corpus is a list with documents split by sentences.
-BASE_DIR = '../'
+BASE_DIR = './'
 TEXT_DATA_DIR = os.path.join(BASE_DIR, 'archive')
 NEWS_FILE_NAME = "abcnews-date-text.csv"
 
@@ -42,7 +36,7 @@ def read_csv(filepath):
 
 
 input_df = read_csv(os.path.join(TEXT_DATA_DIR, NEWS_FILE_NAME))
-input_df = input_df.head(20000)
+input_df = input_df.head(2000)
 print(input_df.head(20))
 
 sentences = input_df['headline_text'].values.tolist()
